@@ -1,6 +1,8 @@
-import { Heading, Button, Code, Text } from '@chakra-ui/react';
+import Head from 'next/head';
 
+import { Button, Code, Text, Flex } from '@chakra-ui/react';
 import { useAuth } from '@/lib/auth';
+import Logo from '@/components/Logo';
 
 export default function Home() {
   const auth = useAuth();
@@ -8,22 +10,36 @@ export default function Home() {
   console.log(auth);
 
   return (
-    <div>
-      <main>
-        <Heading>Sorosoke</Heading>
-        <Text>
-          Get started by editing <Code>Speak Up</Code>
-        </Text>
+    <Flex
+      as="main"
+      direction="column"
+      align="center"
+      justify="center"
+      h="100vh"
+    >
+      <Head>
+        <title>Sorosoke</title>
+      </Head>
 
-        {auth.user ? (
-          <div>
-            <p>Email: {auth.user.email}</p>
-            <Button onClick={(e) => auth.signout()}>Sign Out</Button>
-          </div>
-        ) : (
-          <Button onClick={(e) => auth.signinWithGitHub()}>Sign In</Button>
-        )}
-      </main>
-    </div>
+      <Logo boxSize={20} />
+      <Text>
+        <Code>Speak Up</Code> Now!
+      </Text>
+
+      {auth.user ? (
+        <>
+          <Button mt={4} as="a" href="/dashboard">
+            View Dashboard
+          </Button>
+          <Button variant="ghost" mr={2} onClick={() => auth.signout()}>
+            Log Out
+          </Button>
+        </>
+      ) : (
+        <Button mt={4} onClick={(e) => auth.signinWithGitHub()}>
+          Sign In
+        </Button>
+      )}
+    </Flex>
   );
 }
