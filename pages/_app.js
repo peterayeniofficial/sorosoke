@@ -1,4 +1,4 @@
-import { ChakraProvider, extendTheme, CSSReset } from '@chakra-ui/react';
+import { ChakraProvider, extendTheme, isChakraTheme } from '@chakra-ui/react';
 import { Global, css } from '@emotion/react';
 
 import { AuthProvider } from '@/lib/auth';
@@ -17,7 +17,6 @@ const theme = extendTheme({
 const GlobalStyle = ({ children }) => {
   return (
     <>
-      <CSSReset />
       <Global
         styles={css`
           html {
