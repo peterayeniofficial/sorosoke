@@ -7,8 +7,11 @@ import EmptyState from '@/components/EmptyState';
 import DashboardShell from '@/components/DashboardShell';
 
 const Dashboard = () => {
-  const auth = useAuth();
-  const { data, error } = useSWR('/api/sites', fetcher);
+  const { user } = useAuth();
+  const { data, error } = useSWR(
+    user ? ['/api/sites', user.token] : null,
+    fetcher
+  );
 
   console.log(data);
 

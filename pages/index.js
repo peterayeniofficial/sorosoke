@@ -18,6 +18,15 @@ export default function Home() {
       h="100vh"
     >
       <Head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              if (document.cookie && document.cookie.includes('sorosoke-auth')) {
+                window.location.href = "/dashboard"
+              }
+            `
+          }}
+        />
         <title>Sorosoke</title>
       </Head>
 
