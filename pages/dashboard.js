@@ -5,6 +5,7 @@ import fetcher from '@/utils/fetcher';
 import { useAuth } from '@/lib/auth';
 import EmptyState from '@/components/EmptyState';
 import DashboardShell from '@/components/DashboardShell';
+import SiteTableHeader from '../components/SiteTableHeader';
 
 const Dashboard = () => {
   const { user } = useAuth();
@@ -18,6 +19,7 @@ const Dashboard = () => {
   if (!data) {
     return (
       <DashboardShell>
+        <SiteTableHeader />
         <SiteTableSkeleton />
       </DashboardShell>
     );
@@ -25,6 +27,7 @@ const Dashboard = () => {
 
   return (
     <DashboardShell>
+      <SiteTableHeader />
       {data.sites.length ? <SiteTable sites={data.sites} /> : <EmptyState />}
     </DashboardShell>
   );

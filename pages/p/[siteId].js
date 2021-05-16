@@ -23,8 +23,8 @@ export async function getStaticPaths() {
   const paths = sites.map((site) => ({
     params: {
       siteId: site.id.toString()
-    },
-    revalidate: 1
+    }
+    // revalidate: 1
   }));
 
   return {
